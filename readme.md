@@ -3,6 +3,13 @@
 **Owner:** Pephins Moyo  
 **Date started:** 2026-10-29  
 
+## 🗺️ Network Topology & Architecture
+
+<img width="2696" height="1788" alt="image" src="https://github.com/user-attachments/assets/589ae925-1d88-4ad0-ac51-c5ab471f41b9" />
+
+
+*The multi-zone enterprise architecture featuring dual-cloud hybrid WAN (Rain Networks & Internet NAT), FortiGate perimeter security, DMZ tier, internal switching fabric, and multi-node Kali instances.*
+
 ## Summary
 
 This repository documents the full design, deployment, optimization, and security testing of my multi-zone enterprise lab built in **EVE-NG** running on a 16 GB RAM laptop host. 
