@@ -2,6 +2,12 @@
 
 **Owner:** Pephins Moyo  
 **Date started:** 2026-10-29  
+## 🗺️ Network Topology & Architecture
+
+<img width="2748" height="1818" alt="image" src="https://github.com/user-attachments/assets/47160b32-d979-444f-85e4-103ba05be745" />
+
+
+*The multi-zone enterprise architecture featuring dual-cloud hybrid WAN (Rain Networks & Internet NAT), FortiGate perimeter security, DMZ tier, internal switching fabric, and multi-node Kali instances.*
 
 ## Summary
 
