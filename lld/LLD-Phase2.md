@@ -58,16 +58,16 @@ The lab is intentionally maintained in an **unhardened state** (broad service al
 ## 7. Verification & Failover Evidence
 
 ### 7.1 FortiGate 3-Port Policy Architecture ('10.202.202.1')
-![FortiGate Firewall Policies](../screenshots/fortigate-policies.png)
+![FortiGate Firewall Policies](../screenshots/Phase2/fortigate-policies.png)
 
 ### 7.2 Primary Path Routing via ISP-A ('192.168.8.1')
-![ISP-A Primary Trace](../screenshots/isp-a-primary-trace.png)
+![ISP-A Primary Trace](../screenshots/Phase2/isp-a-primary-trace.png)
 
 ### 7.3 Simulated Primary Link Outage ('Edge-R2' BGP Adjacency Flap)
-![Edge-R2 BGP Failover](../screenshots/edge-r2-bgp-failover.png)
+![Edge-R2 BGP Failover](../screenshots/Phase2/edge-r2-bgp-failover.png)
 
 ### 7.4 Automated BGP Failover via ISP-B ('192.168.53.2')
-![ISP-B Failover Trace](../screenshots/isp-b-failover-trace.png)
+![ISP-B Failover Trace](../screenshots/Phase2/isp-b-failover-trace.png)
 
 ---
 
