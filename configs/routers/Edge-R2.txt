@@ -1,0 +1,110 @@
+
+Edge-R2>
+Edge-R2>
+Edge-R2>en
+Edge-R2>enable
+Edge-R2#
+Edge-R2#terminal length 0
+Edge-R2#show running-config
+Building configuration...
+
+Current configuration : 1655 bytes
+!
+! Last configuration change at 09:02:38 UTC Fri Nov 13 2026
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Edge-R2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+ip cef
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ ip address 10.0.0.2 255.255.255.252
+!
+interface Ethernet0/1
+ ip address 10.0.0.6 255.255.255.252
+!
+interface Ethernet0/2
+ ip address 10.100.100.1 255.255.255.252
+ ip ospf 1 area 0
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+router ospf 1
+ router-id 192.168.100.4
+ redistribute static
+ redistribute connected subnets
+ redistribute bgp 65001 metric-type 1 subnets
+ default-information originate always metric 20 metric-type 1
+!
+router bgp 65001
+ bgp router-id 192.168.100.4
+ bgp log-neighbor-changes
+ no bgp default ipv4-unicast
+ neighbor 10.0.0.1 remote-as 65100
+ neighbor 10.0.0.1 description PRIMARY-ISP-A
+ neighbor 10.0.0.5 remote-as 65200
+ neighbor 10.0.0.5 description BACKUP-ISP-B
+ !
+ address-family ipv4
+  redistribute static
+  redistribute connected
+  neighbor 10.0.0.1 activate
+  neighbor 10.0.0.1 weight 200
+  neighbor 10.0.0.1 soft-reconfiguration inbound
+  neighbor 10.0.0.5 activate
+  neighbor 10.0.0.5 weight 100
+  neighbor 10.0.0.5 soft-reconfiguration inbound
+ exit-address-family
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 Null0 250
+ip route 192.168.8.0 255.255.255.0 10.0.0.1
+ip route 192.168.30.0 255.255.255.0 10.100.100.2
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
+end
+
+Edge-R2#

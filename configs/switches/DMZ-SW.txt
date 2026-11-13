@@ -1,0 +1,132 @@
+
+
+
+Press RETURN to get started!
+
+
+*Nov 13 09:10:26.667: %SPANTREE-5-EXTENDED_SYSID: Extended SysId enabled for type vlan
+*Nov 13 09:10:26.735: %SYS-5-RESTART: System restarted --
+Cisco IOS Software, Solaris Software (I86BI_LINUXL2-ADVENTERPRISEK9-M), Experimental Version 15.1(20130726:213425) [dstivers-july26-2013-team_track 104]
+Copyright (c) 1986-2013 by Cisco Systems, Inc.
+Compiled Fri 26-Jul-13 15:56 by dstivers
+*Nov 13 09:10:26.888: %LINK-3-UPDOWN: Interface Ethernet0/0, changed state to up
+*Nov 13 09:10:27.000: %LINK-3-UPDOWN: Interface Ethernet0/1, changed state to up
+*Nov 13 09:10:27.108: %LINK-3-UPDOWN: Interface Ethernet0/2, changed state to up
+*Nov 13 09:10:27.232: %LINK-3-UPDOWN: Interface Ethernet0/3, changed state to up
+*Nov 13 09:10:27.899: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet0/0, changed state to up
+*Nov 13 09:10:28.018: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet0/1, changed state to up
+*Nov 13 09:10:28.116: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet0/2, changed state to up
+*Nov 13 09:10:28.238: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet0/3, changed state to up
+Switch>
+Switch>
+Switch>
+Switch>en
+Switch>enable
+Switch#
+Switch#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Switch(config)#
+Switch(config)#
+Switch(config)#hos
+Switch(config)#hostname DMZ-SW
+DMZ-SW(config)#
+DMZ-SW(config)#
+DMZ-SW(config)#end
+DMZ-SW#
+DMZ-SW#wr
+Building configuration...
+Compressed configuration from 736 bytes to 518 bytes[OK]
+DMZ-SW#
+DMZ-SW#
+DMZ-SW#
+DMZ-SW#
+*Nov 13 09:10:45.662: %SYS-5-CONFIG_I: Configured from console by console
+DMZ-SW#
+DMZ-SW#
+DMZ-SW#
+DMZ-SW#
+DMZ-SW#terminal length 0
+DMZ-SW#show running-config
+Building configuration...
+
+Current configuration : 736 bytes
+!
+! Last configuration change at 09:10:45 UTC Fri Nov 13 2026
+!
+version 15.1
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+service compress-config
+!
+hostname DMZ-SW
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+ip cef
+!
+!
+no ipv6 cef
+ipv6 multicast rpf use-bgp
+!
+!
+!
+!
+!
+!
+!
+spanning-tree mode pvst
+spanning-tree extend system-id
+!
+!
+!
+!
+vlan internal allocation policy ascending
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ duplex auto
+!
+interface Ethernet0/1
+ duplex auto
+!
+interface Ethernet0/2
+ duplex auto
+!
+interface Ethernet0/3
+ duplex auto
+!
+!
+no ip http server
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+!
+end
+
+DMZ-SW#
+DMZ-SW#
+DMZ-SW#
+DMZ-SW#

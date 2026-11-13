@@ -1,0 +1,101 @@
+
+ISP-A>
+ISP-A>
+ISP-A>
+ISP-A>en
+ISP-A>enable
+ISP-A#terminal length 0
+ISP-A#show running-config
+Building configuration...
+
+Current configuration : 1361 bytes
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname ISP-A
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+no aaa new-model
+!
+ip cef
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ no ip address
+ ip nat inside
+ shutdown
+!
+interface Ethernet0/1
+ ip address 10.0.0.1 255.255.255.252
+ ip nat inside
+!
+interface Ethernet0/2
+ ip address 192.168.8.119 255.255.255.0
+ ip nat outside
+!
+interface Ethernet0/3
+ no ip address
+ shutdown
+!
+router bgp 65100
+ bgp router-id 192.168.100.100
+ bgp log-neighbor-changes
+ neighbor 10.0.0.2 remote-as 65001
+ neighbor 10.0.0.2 description Pephins-Enterprise
+ !
+ address-family ipv4
+  network 0.0.0.0
+  neighbor 10.0.0.2 activate
+ exit-address-family
+!
+ip nat inside source list 1 interface Ethernet0/2 overload
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 192.168.8.1
+ip route 0.0.0.0 0.0.0.0 192.168.53.2
+ip route 192.168.10.0 255.255.255.0 10.0.0.6
+ip route 192.168.30.0 255.255.255.0 10.0.0.6
+ip route 192.168.50.0 255.255.255.0 10.0.0.6
+ip route 192.168.100.0 255.255.255.0 10.0.0.6
+!
+!
+access-list 1 permit 192.168.0.0 0.0.255.255
+access-list 1 permit 10.0.0.0 0.255.255.255
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login
+ transport input all
+!
+end
+
+ISP-A#

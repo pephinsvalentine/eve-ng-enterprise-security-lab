@@ -1,0 +1,432 @@
+
+Cisco-Access2>en
+Cisco-Access2>enable
+Cisco-Access2#
+Cisco-Access2#
+Cisco-Access2#terminal length 0
+Cisco-Access2#show running-config
+Building configuration...
+
+Current configuration : 1289 bytes
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Cisco-Access2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+username admin privilege 15 secret 5 $1$HP0A$qkESgedCTvnSCR3bgFK5k0
+no aaa new-model
+!
+ip cef
+ip domain-name lab.local
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ no ip address
+ shutdown
+!
+interface Ethernet0/1
+ ip address 10.203.203.2 255.255.255.252
+ ip ospf 1 area 0
+!
+interface Ethernet0/2
+ ip address 192.168.30.1 255.255.255.0
+!
+interface Ethernet0/3
+ ip address 10.202.202.2 255.255.255.252
+ ip ospf 1 area 0
+!
+router ospf 1
+ router-id 192.168.100.2
+ redistribute static subnets
+ redistribute connected subnets
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.202.202.1
+ip route 192.168.10.0 255.255.255.0 192.168.30.2
+ip route 192.168.50.0 255.255.255.0 192.168.30.2
+!
+!
+!
+ip prefix-list PL-NO-DEFAULT seq 5 deny 0.0.0.0/0
+ip prefix-list PL-NO-DEFAULT seq 10 permit 0.0.0.0/0 le 32
+!
+!
+!
+!
+route-map RM-REDIST-STATIC deny 10
+ match ip address prefix-list PL-NO-DEFAULT
+!
+route-map RM-REDIST-STATIC permit 20
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+end
+
+Cisco-Access2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Cisco-Access2(config)#
+Cisco-Access2(config)#no route-map RM-REDIST-STATIC deny 10
+Cisco-Access2(config)#no route-map RM-REDIST-STATIC permit 20
+Cisco-Access2(config)#
+Cisco-Access2(config)#
+Cisco-Access2(config)#
+
+Cisco-Access2(config)#
+Cisco-Access2(config)#
+Cisco-Access2(config)#terminal length 0
+                               ^
+% Invalid input detected at '^' marker.
+
+Cisco-Access2(config)#show running-config
+                       ^
+% Invalid input detected at '^' marker.
+
+Cisco-Access2(config)#
+Cisco-Access2(config)#end
+Cisco-Access2#
+Cisco-Access2#
+Cisco-Access2#
+Cisco-Access2#
+*Nov 13 09:19:21.631: %SYS-5-CONFIG_I: Configured from console by console
+Cisco-Access2#
+
+Cisco-Access2#
+Cisco-Access2#
+Cisco-Access2#terminal length 0
+Cisco-Access2#show running-config
+Building configuration...
+
+Current configuration : 1231 bytes
+!
+! Last configuration change at 09:19:21 UTC Fri Nov 13 2026
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Cisco-Access2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+username admin privilege 15 secret 5 $1$HP0A$qkESgedCTvnSCR3bgFK5k0
+no aaa new-model
+!
+ip cef
+ip domain-name lab.local
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ no ip address
+ shutdown
+!
+interface Ethernet0/1
+ ip address 10.203.203.2 255.255.255.252
+ ip ospf 1 area 0
+!
+interface Ethernet0/2
+ ip address 192.168.30.1 255.255.255.0
+!
+interface Ethernet0/3
+ ip address 10.202.202.2 255.255.255.252
+ ip ospf 1 area 0
+!
+router ospf 1
+ router-id 192.168.100.2
+ redistribute static subnets
+ redistribute connected subnets
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.202.202.1
+ip route 192.168.10.0 255.255.255.0 192.168.30.2
+ip route 192.168.50.0 255.255.255.0 192.168.30.2
+!
+!
+!
+ip prefix-list PL-NO-DEFAULT seq 5 deny 0.0.0.0/0
+ip prefix-list PL-NO-DEFAULT seq 10 permit 0.0.0.0/0 le 32
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+end
+
+Cisco-Access2#no ip prefix-list PL-NO-DEFAULT seq 5 deny 0.0.0.0/0
+                 ^
+% Invalid input detected at '^' marker.
+
+Cisco-Access2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Cisco-Access2(config)#
+Cisco-Access2(config)#no ip prefix-list PL-NO-DEFAULT seq 5 deny 0.0.0.0/0
+Cisco-Access2(config)#$x-list PL-NO-DEFAULT seq 10 permit 0.0.0.0/0 le 32
+Cisco-Access2(config)#
+Cisco-Access2(config)#
+Cisco-Access2(config)#
+Cisco-Access2(config)#end
+Cisco-Access2#
+Cisco-Access2#
+Cisco-Access2#
+*Nov 13 09:19:56.363: %SYS-5-CONFIG_I: Configured from console by console
+Cisco-Access2#
+
+Cisco-Access2#
+Cisco-Access2#
+Cisco-Access2#terminal length 0
+Cisco-Access2#show running-config
+Building configuration...
+
+Current configuration : 1120 bytes
+!
+! Last configuration change at 09:19:56 UTC Fri Nov 13 2026
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Cisco-Access2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+username admin privilege 15 secret 5 $1$HP0A$qkESgedCTvnSCR3bgFK5k0
+no aaa new-model
+!
+ip cef
+ip domain-name lab.local
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ no ip address
+ shutdown
+!
+interface Ethernet0/1
+ ip address 10.203.203.2 255.255.255.252
+ ip ospf 1 area 0
+!
+interface Ethernet0/2
+ ip address 192.168.30.1 255.255.255.0
+!
+interface Ethernet0/3
+ ip address 10.202.202.2 255.255.255.252
+ ip ospf 1 area 0
+!
+router ospf 1
+ router-id 192.168.100.2
+ redistribute static subnets
+ redistribute connected subnets
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.202.202.1
+ip route 192.168.10.0 255.255.255.0 192.168.30.2
+ip route 192.168.50.0 255.255.255.0 192.168.30.2
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+end
+
+Cisco-Access2#interface Ethernet0/1
+               ^
+% Invalid input detected at '^' marker.
+
+Cisco-Access2#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Cisco-Access2(config)#interface Ethernet0/1
+Cisco-Access2(config-if)#cle
+Cisco-Access2(config-if)#cleq
+Cisco-Access2(config-if)#cle
+Cisco-Access2(config-if)#no ip address 10.203.203.2 255.255.255.252
+Cisco-Access2(config-if)#no ip ospf 1 area 0
+Cisco-Access2(config-if)#
+Cisco-Access2(config-if)#
+Cisco-Access2(config-if)#shut
+Cisco-Access2(config-if)#
+Cisco-Access2(config-if)#end
+Cisco-Access2#
+Cisco-Access2#wr
+Building configuration...
+[OK]
+Cisco-Access2#
+Cisco-Access2#
+Cisco-Access2#
+*Nov 13 09:20:56.335: %LINK-5-CHANGED: Interface Ethernet0/1, changed state to administratively down
+*Nov 13 09:20:56.687: %SYS-5-CONFIG_I: Configured from console by console
+*Nov 13 09:20:57.339: %LINEPROTO-5-UPDOWN: Line protocol on Interface Ethernet0/1, changed state to down
+Cisco-Access2#
+
+Cisco-Access2#
+Cisco-Access2#terminal length 0
+Cisco-Access2#show running-config
+Building configuration...
+
+Current configuration : 1086 bytes
+!
+! Last configuration change at 09:20:56 UTC Fri Nov 13 2026
+!
+version 15.0
+service timestamps debug datetime msec
+service timestamps log datetime msec
+no service password-encryption
+!
+hostname Cisco-Access2
+!
+boot-start-marker
+boot-end-marker
+!
+!
+!
+username admin privilege 15 secret 5 $1$HP0A$qkESgedCTvnSCR3bgFK5k0
+no aaa new-model
+!
+ip cef
+ip domain-name lab.local
+!
+no ipv6 cef
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Ethernet0/0
+ no ip address
+ shutdown
+!
+interface Ethernet0/1
+ no ip address
+ shutdown
+!
+interface Ethernet0/2
+ ip address 192.168.30.1 255.255.255.0
+!
+interface Ethernet0/3
+ ip address 10.202.202.2 255.255.255.252
+ ip ospf 1 area 0
+!
+router ospf 1
+ router-id 192.168.100.2
+ redistribute static subnets
+ redistribute connected subnets
+!
+ip forward-protocol nd
+!
+no ip http server
+no ip http secure-server
+ip route 0.0.0.0 0.0.0.0 10.202.202.1
+ip route 192.168.10.0 255.255.255.0 192.168.30.2
+ip route 192.168.50.0 255.255.255.0 192.168.30.2
+!
+!
+!
+!
+!
+!
+!
+!
+control-plane
+!
+!
+line con 0
+ logging synchronous
+line aux 0
+line vty 0 4
+ login local
+ transport input ssh
+!
+end
+
+Cisco-Access2#
